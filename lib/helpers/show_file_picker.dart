@@ -17,7 +17,8 @@ Future<void> showMaterialFilePicker({
   ValueChanged<Uint8List> onChanged,
 }) async {
   try {
-    File file = await FilePicker.getFile(type: fileType);
+    FilePickerResult result = await FilePicker.platform.pickFiles(type: fileType);
+    File file = File(result.files.single.path);
     var data = file.readAsBytesSync();
     if (onChanged != null && file != null) onChanged(data);
   } catch (error) {

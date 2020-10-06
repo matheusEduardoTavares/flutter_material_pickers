@@ -4,15 +4,6 @@ typedef CustomDialogBuilder = Widget Function(
   {
     BuildContext context, 
     Widget child,
-    String title,
-    Color headerColor,
-    Color headerTextColor,
-    Color backgroundColor,
-    Color buttonTextColor,
-    double maxLongSide,
-    double maxShortSide,
-    String confirmText,
-    String cancelText,
     VoidCallback okPressed
   }
 );

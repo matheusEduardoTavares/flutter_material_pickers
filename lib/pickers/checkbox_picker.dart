@@ -42,29 +42,34 @@ class CheckboxPickerState extends State<CheckboxPicker> {
     return Container(
       child: Scrollbar(
         child: ListView.builder(
+          padding: EdgeInsets.only(bottom: 15),
           itemCount: itemCount,
           itemBuilder: (BuildContext context, int index) {
             bool isSelected = selectedValues.contains(widget.items[index]);
 
-            return CheckboxListTile(
-              activeColor: theme.accentColor,
-              checkColor: theme.dialogBackgroundColor,
-              title: Text(
-                widget.items[index],
-                style: (isSelected)
-                    ? TextStyle(color: theme.accentColor)
-                    : TextStyle(color: theme.textTheme.bodyText2.color),
+            return Container(
+              height: 35,
+              padding: EdgeInsets.only(left: 28),
+              child: CheckboxListTile(
+                activeColor: theme.accentColor,
+                checkColor: theme.dialogBackgroundColor,
+                title: Text(
+                  widget.items[index],
+                  style: (isSelected)
+                      ? TextStyle(color: theme.accentColor)
+                      : TextStyle(color: theme.textTheme.bodyText2.color),
+                ),
+                value: isSelected,
+                onChanged: (bool value) {
+                  setState(() {
+                    if (value == true) {
+                      selectedValues.add(widget.items[index]);
+                    } else {
+                      selectedValues.remove(widget.items[index]);
+                    }
+                  });
+                },
               ),
-              value: isSelected,
-              onChanged: (bool value) {
-                setState(() {
-                  if (value == true) {
-                    selectedValues.add(widget.items[index]);
-                  } else {
-                    selectedValues.remove(widget.items[index]);
-                  }
-                });
-              },
             );
           },
         ),
